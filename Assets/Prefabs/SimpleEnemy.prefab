@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 8331523331640045268}
   - component: {fileID: 3560456944807674275}
   - component: {fileID: -7052107033537628613}
-  - component: {fileID: 6717949170544835868}
+  - component: {fileID: 5401882818252667439}
+  - component: {fileID: 4102816485999720301}
+  - component: {fileID: 3498781802660436041}
   m_Layer: 7
   m_Name: SimpleEnemy
   m_TagString: Untagged
@@ -179,9 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  healthPoints: 0
-  maxHealthPoints: 0
---- !u!114 &6717949170544835868
+  healthPoints: 10
+  maxHealthPoints: 10
+--- !u!114 &5401882818252667439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,6 +192,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5369253211775727933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195c70c087ebde843927cdd8fde1e9f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 96e73d05205cfdb46888627a07316200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4102816485999720301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369253211775727933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f37b8d3158fa014eba8ba04eff5e8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3498781802660436041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369253211775727933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9b937cfe6ee7d458081632826211cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
