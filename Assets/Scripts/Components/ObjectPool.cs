@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Interfaces;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -9,9 +11,9 @@ namespace Assets.Scripts.Components
         [SerializeField] private GameObject gameObjectPrefab;
         [SerializeField] private int poolSize = 10;
 
-        [Inject] private DiContainer container;
         private Queue<GameObject> gameObjectPool = new Queue<GameObject>();
 
+        [Inject] private DiContainer container;
 
         private void Awake()
         {
@@ -23,6 +25,7 @@ namespace Assets.Scripts.Components
             for (int i = 0; i < poolSize; i++)
             {
                 GameObject gameObject = container.InstantiatePrefab(gameObjectPrefab, transform.position, Quaternion.identity, null);
+                gameObject.GetComponent<IObjectPool>().ObjectPool = this;
                 gameObject.SetActive(false);
                 gameObjectPool.Enqueue(gameObject);
             }
@@ -33,6 +36,7 @@ namespace Assets.Scripts.Components
             if (gameObjectPool.Count == 0)
             {
                 GameObject gameObject = container.InstantiatePrefab(gameObjectPrefab, transform.position, Quaternion.identity, null);
+                gameObject.GetComponent<IObjectPool>().ObjectPool = this;
                 return gameObject;
             }
             else

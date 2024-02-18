@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Items
-  - Enemies
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -53,7 +53,7 @@ TagManager:
   - name: New Layer 4
     uniqueID: 2773040025
     locked: 0
-  - name: Player
+  - name: Units
     uniqueID: 3971169579
     locked: 0
   - name: Items

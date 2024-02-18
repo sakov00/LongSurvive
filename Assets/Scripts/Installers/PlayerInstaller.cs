@@ -1,6 +1,6 @@
-using Assets.Scripts.Units.Controllers.Player;
-using Assets.Scripts.Units.Models;
-using Assets.Scripts.Units.Views;
+using Assets.Scripts.Controllers.Player;
+using Assets.Scripts.Models;
+using Assets.Scripts.Views;
 using UnityEngine;
 using Zenject;
 
