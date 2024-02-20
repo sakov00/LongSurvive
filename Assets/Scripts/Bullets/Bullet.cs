@@ -16,23 +16,27 @@ namespace Assets.Scripts.Bullets
         [SerializeField] protected float bulletSpeed;
         [SerializeField] private float lifetime = 5f;
 
-        public ObjectPool ObjectPool { get => objectPool; set => objectPool = value; }
-        private ObjectPool objectPool;
+        public event Action<GameObject> OnReturnToPool;
 
         private void Start()
         {
             StartCoroutine(ReturnToPoolAfterLifetime());
         }
 
-        private void FixedUpdate()
-        {
-            Move();
-        }
-
         private IEnumerator ReturnToPoolAfterLifetime()
         {
             yield return new WaitForSeconds(lifetime);
-            objectPool.ReturnObjectToPool(gameObject);
+            ReturnToPool();
+        }
+
+        public void ReturnToPool()
+        {
+            OnReturnToPool.Invoke(gameObject);
+        }
+
+        private void FixedUpdate()
+        {
+            Move();
         }
 
         protected abstract void Move();

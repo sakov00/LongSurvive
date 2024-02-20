@@ -15,9 +15,17 @@ namespace Assets.Scripts.Controllers.Player
 {
     public class PlayerMovementController : MonoBehaviour
     {
-        [Inject] private PlayerModel playerModel;
-        [Inject] private PlayerInputController playerInputController;
-        [Inject] private PlayerView playerView;
+        private PlayerModel playerModel;
+        private PlayerInputController playerInputController;
+        private PlayerView playerView;
+
+        [Inject]
+        public void Construct(PlayerModel playerModel, PlayerInputController playerInputController, PlayerView playerView) 
+        {
+            this.playerModel = playerModel;
+            this.playerInputController = playerInputController;
+            this.playerView = playerView;
+        }
 
         private void Awake()
         {
@@ -27,7 +35,7 @@ namespace Assets.Scripts.Controllers.Player
         public void Move(float horizontalInput, float verticalInput)
         {
             var movement = new Vector2(horizontalInput, verticalInput);
-            movement *= playerModel.movementSpeed;
+            movement *= playerModel.MovementSpeed;
 
             playerView.Move(movement);
         }

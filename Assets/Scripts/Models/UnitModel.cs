@@ -1,34 +1,25 @@
-using Assets.Scripts.Components;
 using Assets.Scripts.Interfaces;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Models
 {
     public abstract class UnitModel : MonoBehaviour, IObjectPool
     {
-        public ObjectPool ObjectPool { get => objectPool; set => objectPool = value; }
-        private ObjectPool objectPool;
+        public event Action OnDeath;
+        public event Action<GameObject> OnReturnToPool;
 
-        public float movementSpeed;
-
-        public float healthPoints;
-        public float maxHealthPoints;
+        [field: SerializeField] public float MovementSpeed { get; private set; }
+        [field: SerializeField, Range(0,100)] public float HealthPoints { get; private set; }
 
         public void ModifyHealth(float value)
         {
-            healthPoints += value;
-            if (healthPoints <= 0)
+            HealthPoints += value;
+            if (HealthPoints == 0)
             {
-                if (ObjectPool != null)
-                    ObjectPool.ReturnObjectToPool(gameObject);
-                else
-                    Destroy(gameObject);
+                OnDeath?.Invoke();
+                OnReturnToPool?.Invoke(gameObject);
             }
-        }
-
-        public void ResetProperties()
-        {
-
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Assets.Scripts.Components
             for (int i = 0; i < poolSize; i++)
             {
                 GameObject gameObject = container.InstantiatePrefab(gameObjectPrefab, transform.position, Quaternion.identity, null);
-                gameObject.GetComponent<IObjectPool>().ObjectPool = this;
+                gameObject.GetComponent<IObjectPool>().OnReturnToPool += ReturnObjectToPool;
                 gameObject.SetActive(false);
                 gameObjectPool.Enqueue(gameObject);
             }
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Components
             if (gameObjectPool.Count == 0)
             {
                 GameObject gameObject = container.InstantiatePrefab(gameObjectPrefab, transform.position, Quaternion.identity, null);
-                gameObject.GetComponent<IObjectPool>().ObjectPool = this;
+                gameObject.GetComponent<IObjectPool>().OnReturnToPool += ReturnObjectToPool;
                 return gameObject;
             }
             else

@@ -13,7 +13,7 @@ namespace Assets.Scripts.Controllers.Enemy
                 var bullet = collision.gameObject.GetComponent<Bullet>();
 
                 unitModel.ModifyHealth(bullet.valueDamage);
-                bullet.ObjectPool.ReturnObjectToPool(bullet.gameObject);
+                bullet.ReturnToPool();
             }
         }
     }

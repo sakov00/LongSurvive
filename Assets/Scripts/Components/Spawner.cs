@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Components
 {
@@ -7,26 +8,45 @@ namespace Assets.Scripts.Components
     public class Spawner : MonoBehaviour
     {
         [SerializeField] private float spawnInterval = 10f;
+        [SerializeField] private Transform[] spawnPoints;
 
         private ObjectPool objectPool;
+        private float timer = 0f;
 
         private void Awake()
         {
             objectPool = GetComponent<ObjectPool>();
         }
 
-        private void Start()
+        public void Update()
         {
-            StartCoroutine(SpawnObjects());
+            timer += Time.deltaTime;
+            if (timer >= spawnInterval)
+            {
+                SpawnObject();
+                timer = 0f;
+            }
         }
 
-        private IEnumerator SpawnObjects()
+        private void SpawnObject()
         {
-            while (true)
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject newObject = objectPool.GetObjectFromPool();
+            if (newObject != null)
             {
-                objectPool.GetObjectFromPool();
-                yield return new WaitForSeconds(spawnInterval);
+                newObject.transform.position = randomSpawnPoint.position;
+                newObject.transform.rotation = randomSpawnPoint.rotation;
             }
+        }
+
+        public void StartSpawning()
+        {
+            enabled = true;
+        }
+
+        public void StopSpawning()
+        {
+            enabled = false;
         }
     }
 }

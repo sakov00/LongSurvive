@@ -13,9 +13,17 @@ namespace Assets.Scripts.Controllers.Player
 {
     public class PlayerWeaponController : MonoBehaviour
     {
-        [Inject] private PlayerModel playerModel;
-        [Inject] private PlayerInputController playerInputController;
-        [Inject] private PlayerView playerView;
+        private PlayerModel playerModel;
+        private PlayerInputController playerInputController;
+        private PlayerView playerView;
+
+        [Inject]
+        public void Construct(PlayerModel playerModel, PlayerInputController playerInputController, PlayerView playerView)
+        {
+            this.playerModel = playerModel;
+            this.playerInputController = playerInputController;
+            this.playerView = playerView;
+        }
 
         public Weapon weapon;
 

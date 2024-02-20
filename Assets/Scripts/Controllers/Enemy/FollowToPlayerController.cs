@@ -24,7 +24,7 @@ namespace Assets.Scripts.Controllers.Enemy
             if (detectionController.IsVisiblePlayer)
             {
                 var direction = (detectionController.NearPlayerTransform.position - transform.position).normalized;
-                var newPosition = direction * enemyModel.movementSpeed;
+                var newPosition = direction * enemyModel.MovementSpeed;
                 enemyView.Move(newPosition);
             }
         }
