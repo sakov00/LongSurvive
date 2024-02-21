@@ -1,8 +1,10 @@
 ﻿
+using UnityEngine;
+
 namespace Assets.Scripts.Models
 {
     public class PlayerModel : UnitModel
     {
-        public int score;
+        [field: SerializeField, Range(1, 10)] public float Score { get; private set; }
     }
 }

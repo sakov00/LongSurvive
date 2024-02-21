@@ -1,6 +1,7 @@
 using Assets.Scripts.Components;
 using Assets.Scripts.Controllers.Player;
 using Assets.Scripts.Models;
+using Assets.Scripts.ScriptableObjects.Units;
 using Assets.Scripts.Views;
 using UnityEngine;
 using Zenject;
@@ -16,10 +17,13 @@ namespace Assets.Scripts.Installers
 
         [SerializeField] private Spawner spawner;
 
+        [SerializeField] private UnitConfig unitConfig;
+
         public override void InstallBindings()
         {
             BindPlayer();
             BindMap();
+            BindScriptableObjects();
         }
 
         private void BindPlayer()
@@ -33,6 +37,11 @@ namespace Assets.Scripts.Installers
         private void BindMap() 
         {
             Container.Bind<Spawner>().FromInstance(spawner).AsSingle();
+        }
+
+        private void BindScriptableObjects()
+        {
+            Container.Bind<UnitConfig>().FromInstance(unitConfig).AsSingle();
         }
     }
 }

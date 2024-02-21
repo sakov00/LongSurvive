@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830a8cec149e07044b9d8b9ab4f3a65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 5
+  spawnInterval: 2
   spawnPoints:
   - {fileID: 1774849247}
   - {fileID: 1379394811}
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MovementSpeed>k__BackingField: 5
   <HealthPoints>k__BackingField: 100
-  score: 0
+  <Score>k__BackingField: 0
 --- !u!1 &862145046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1078,7 @@ MonoBehaviour:
   playerInputController: {fileID: 451597201}
   playerMovementController: {fileID: 719560662}
   spawner: {fileID: 451597204}
+  unitConfig: {fileID: 11400000, guid: 96dbef47cdaed3e429a16a04b752025b, type: 2}
 --- !u!1 &1080231426
 GameObject:
   m_ObjectHideFlags: 0

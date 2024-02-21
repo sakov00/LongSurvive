@@ -50,6 +50,7 @@ namespace Assets.Scripts.Components
         public void ReturnObjectToPool(GameObject gameObject)
         {
             gameObject.SetActive(false);
+            gameObject?.GetComponent<IResetable>()?.Reset();
             gameObjectPool.Enqueue(gameObject);
         }
     }

@@ -18,7 +18,7 @@ namespace Assets.Scripts.Controllers.Player
             {
                 var enemy = collision.gameObject.GetComponent<EnemyModel>();
 
-                unitModel.ModifyHealth(enemy.contactDamageValue);
+                unitModel.ModifyHealth(enemy.ContactDamageValue);
             }
         }
     }
