@@ -8,8 +8,7 @@ namespace Assets.Scripts.Guns
     public abstract class Weapon : MonoBehaviour
     {
         [SerializeField] protected Transform shootPoint;
-        [SerializeField] protected float shootReloadInSecond;
-        [SerializeField] protected float objectLifetime;
+        [SerializeField] protected float shootInSecond;
 
         protected bool canShoot = true;
 
@@ -22,7 +21,7 @@ namespace Assets.Scripts.Guns
             objectPool = GetComponent<ObjectPool>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             RotationGun();
         }

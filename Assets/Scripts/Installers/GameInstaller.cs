@@ -1,7 +1,9 @@
 using Assets.Scripts.Components;
+using Assets.Scripts.Controllers.Game;
+using Assets.Scripts.Controllers.Menu;
 using Assets.Scripts.Controllers.Player;
 using Assets.Scripts.Models;
-using Assets.Scripts.ScriptableObjects.Units;
+using Assets.Scripts.ScriptableObjects.Scripts;
 using Assets.Scripts.Views;
 using UnityEngine;
 using Zenject;
@@ -15,7 +17,10 @@ namespace Assets.Scripts.Installers
         [SerializeField] private PlayerInputController playerInputController;
         [SerializeField] private PlayerMovementController playerMovementController;
 
+        [SerializeField] private GameController gameController;
         [SerializeField] private Spawner spawner;
+        [SerializeField] private EnemyManager enemyManager;
+        [SerializeField] private MenuController menuController;
 
         [SerializeField] private UnitConfig unitConfig;
 
@@ -36,7 +41,10 @@ namespace Assets.Scripts.Installers
 
         private void BindMap() 
         {
+            Container.Bind<GameController>().FromInstance(gameController).AsSingle();
             Container.Bind<Spawner>().FromInstance(spawner).AsSingle();
+            Container.Bind<EnemyManager>().FromInstance(enemyManager).AsSingle();
+            Container.Bind<MenuController>().FromInstance(menuController).AsSingle();
         }
 
         private void BindScriptableObjects()

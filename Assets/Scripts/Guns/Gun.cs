@@ -19,17 +19,9 @@ namespace Assets.Scripts.Guns
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
 
-            StartCoroutine(ReturnToPoolAfterLifetime(bullet));
-
             canShoot = false;
-            yield return new WaitForSeconds(shootReloadInSecond);
+            yield return new WaitForSeconds(shootInSecond);
             canShoot = true;
-        }
-
-        private IEnumerator ReturnToPoolAfterLifetime(GameObject bullet)
-        {
-            yield return new WaitForSeconds(objectLifetime);
-            objectPool.ReturnObjectToPool(bullet);
         }
     }
 }

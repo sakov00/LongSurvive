@@ -14,7 +14,8 @@ namespace Assets.Scripts.Bullets
     {
         [SerializeField] public float valueDamage;
         [SerializeField] protected float bulletSpeed;
-        [SerializeField] private float lifetime = 5f;
+        [SerializeField] protected float lifetime = 5f;
+        [SerializeField] protected LayerMask destroyBulletMask;
 
         public event Action<GameObject> OnReturnToPool;
 
@@ -37,6 +38,14 @@ namespace Assets.Scripts.Bullets
         private void FixedUpdate()
         {
             Move();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if ((destroyBulletMask & (1 << collision.gameObject.layer)) != 0)
+            {
+                ReturnToPool(); 
+            }
         }
 
         protected abstract void Move();

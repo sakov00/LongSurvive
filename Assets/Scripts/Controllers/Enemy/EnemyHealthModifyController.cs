@@ -11,9 +11,7 @@ namespace Assets.Scripts.Controllers.Enemy
             if (collision.gameObject.GetComponent<Bullet>() != null)
             {
                 var bullet = collision.gameObject.GetComponent<Bullet>();
-
                 unitModel.ModifyHealth(bullet.valueDamage);
-                bullet.ReturnToPool();
             }
         }
     }

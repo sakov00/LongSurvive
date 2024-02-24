@@ -11,7 +11,7 @@ namespace Assets.Scripts.Components
         [SerializeField] private GameObject gameObjectPrefab;
         [SerializeField] private int poolSize = 10;
 
-        private Queue<GameObject> gameObjectPool = new Queue<GameObject>();
+        private Stack<GameObject> gameObjectPool = new Stack<GameObject>();
 
         [Inject] private DiContainer container;
 
@@ -27,7 +27,7 @@ namespace Assets.Scripts.Components
                 GameObject gameObject = container.InstantiatePrefab(gameObjectPrefab, transform.position, Quaternion.identity, null);
                 gameObject.GetComponent<IObjectPool>().OnReturnToPool += ReturnObjectToPool;
                 gameObject.SetActive(false);
-                gameObjectPool.Enqueue(gameObject);
+                gameObjectPool.Push(gameObject);
             }
         }
 
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Components
             }
             else
             {
-                GameObject gameObject = gameObjectPool.Dequeue();
+                GameObject gameObject = gameObjectPool.Pop();
                 gameObject.SetActive(true);
                 return gameObject;
             }
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Components
         {
             gameObject.SetActive(false);
             gameObject?.GetComponent<IResetable>()?.Reset();
-            gameObjectPool.Enqueue(gameObject);
+            gameObjectPool.Push(gameObject);
         }
     }
 }

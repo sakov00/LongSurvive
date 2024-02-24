@@ -12,16 +12,17 @@ namespace Assets.Scripts.Controllers.Player
 
         public event Action<float, float> OnMovementEvent;
         public event Action<float> OnShootEvent;
-
-        private bool controlsEnabled = true;
+        public event Action OnPauseMenuEvent;
 
         private void FixedUpdate()
         {
-            if (controlsEnabled)
-            {
-                OnMovementEvent?.Invoke(horizontalInput, verticalInput);
-                OnShootEvent?.Invoke(shootInput);
-            }
+            OnMovementEvent?.Invoke(horizontalInput, verticalInput);
+            OnShootEvent?.Invoke(shootInput);
+        }
+
+        public void OnPauseMenu(InputAction.CallbackContext context)
+        {
+            OnPauseMenuEvent?.Invoke();
         }
 
         public void OnHorisontalMovement(InputAction.CallbackContext context)
@@ -37,16 +38,6 @@ namespace Assets.Scripts.Controllers.Player
         public void OnShoot(InputAction.CallbackContext context)
         {
             shootInput = context.ReadValue<float>();
-        }
-
-        public void EnableControls()
-        {
-            controlsEnabled = true;
-        }
-
-        public void DisableControls()
-        {
-            controlsEnabled = false;
         }
     }
 }

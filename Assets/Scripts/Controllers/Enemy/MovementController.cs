@@ -15,6 +15,8 @@ namespace Assets.Scripts.Controllers.Enemy
         protected EnemyModel enemyModel;
         protected EnemyView enemyView;
 
+        public abstract void Move();
+
         protected virtual void Awake()
         {
             enemyModel = GetComponent<EnemyModel>();
@@ -25,7 +27,5 @@ namespace Assets.Scripts.Controllers.Enemy
         {
             Move();
         }
-
-        public abstract void Move();
     }
 }

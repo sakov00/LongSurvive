@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Controllers.Game;
+using UnityEngine;
 
 namespace Assets.Scripts.Models
 {
@@ -10,6 +11,11 @@ namespace Assets.Scripts.Models
         {
             base.Reset();
             ContactDamageValue = unitConfig.ContactDamageValue;
+        }
+
+        protected override void Die()
+        {
+            Debug.Log("Eneme is dead");
         }
     }
 }

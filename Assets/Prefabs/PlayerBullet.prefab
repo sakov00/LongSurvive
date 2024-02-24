@@ -174,3 +174,6 @@ MonoBehaviour:
   valueDamage: -5
   bulletSpeed: 0.2
   lifetime: 5
+  destroyBulletMask:
+    serializedVersion: 2
+    m_Bits: 640

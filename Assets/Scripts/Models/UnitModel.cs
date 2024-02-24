@@ -1,5 +1,5 @@
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.ScriptableObjects.Units;
+using Assets.Scripts.ScriptableObjects.Scripts;
 using System;
 using UnityEngine;
 using Zenject;
@@ -22,20 +22,22 @@ namespace Assets.Scripts.Models
             this.unitConfig = unitConfig;
         }
 
+        public virtual void Reset()
+        {
+            MovementSpeed = unitConfig.MovementSpeed;
+            HealthPoints = unitConfig.HealthPoints;
+        }
+
         public void ModifyHealth(float value)
         {
             HealthPoints += value;
-            if (HealthPoints == 0)
+            if (HealthPoints <= 0)
             {
                 OnDeath?.Invoke();
                 OnReturnToPool?.Invoke(gameObject);
             }
         }
 
-        public virtual void Reset()
-        {
-            MovementSpeed = unitConfig.MovementSpeed;
-            HealthPoints = unitConfig.HealthPoints;
-        }
+        protected abstract void Die();
     }
 }
