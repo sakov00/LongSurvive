@@ -9,12 +9,10 @@ namespace Assets.Scripts.Models
     {
         [field: SerializeField, Range(0, 100)] public float Score { get; private set; }
 
-        protected GameController gameController;
+        [Inject] protected GameController gameController;
 
-        [Inject]
-        public void Construct(GameController gameController)
+        private void Awake()
         {
-            this.gameController = gameController;
             OnDeath += Die;
         }
 

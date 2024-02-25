@@ -1,9 +1,4 @@
 ﻿using Assets.Scripts.Controllers.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -11,17 +6,32 @@ namespace Assets.Scripts.Controllers.Menu
 {
     public class MenuController : MonoBehaviour
     {
-        protected GameController gameController;
+        [Inject] private PlayerInputController playerInputController;
 
-        [Inject]
-        public void Construct(GameController gameController)
+        [SerializeField] private GameObject pauseMenu;
+
+        private void Awake()
         {
-            this.gameController = gameController;
+            playerInputController.OnPauseMenuEvent += PauseMenu;
+        }
+
+        public void PauseMenu()
+        {
+            if (Time.timeScale == 1)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
 
         public void ClickContinue()
         {
-            gameController.GameContinue();
+            PauseMenu();
         }
 
         public void ClickSettings()

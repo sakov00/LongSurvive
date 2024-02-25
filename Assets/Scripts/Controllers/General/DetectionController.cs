@@ -1,12 +1,7 @@
 ﻿using Assets.Scripts.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Controllers.Enemy
+namespace Assets.Scripts.Controllers.General
 {
     public class DetectionController : MonoBehaviour
     {

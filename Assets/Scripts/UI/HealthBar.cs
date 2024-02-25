@@ -7,15 +7,10 @@ namespace Assets.Scripts.UI
 {
     public class HealthBar : MonoBehaviour
     {
-        private PlayerModel playerModel;
+        [Inject] private PlayerModel playerModel;
+
         public Image bar;
         private float maxHealthPoints;
-
-        [Inject]
-        public void Construct(PlayerModel playerModel)
-        {
-            this.playerModel = playerModel;
-        }
 
         public void Start()
         {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Controllers.Player
+namespace Assets.Scripts.Controllers.Game
 {
     public class PlayerInputController : MonoBehaviour
     {
@@ -11,18 +11,21 @@ namespace Assets.Scripts.Controllers.Player
         private float shootInput;
 
         public event Action<float, float> OnMovementEvent;
-        public event Action<float> OnShootEvent;
+        public event Action OnShootEvent;
         public event Action OnPauseMenuEvent;
 
         private void FixedUpdate()
         {
             OnMovementEvent?.Invoke(horizontalInput, verticalInput);
-            OnShootEvent?.Invoke(shootInput);
+
+            if(shootInput == 1)
+                OnShootEvent?.Invoke();
         }
 
         public void OnPauseMenu(InputAction.CallbackContext context)
         {
-            OnPauseMenuEvent?.Invoke();
+            if (context.canceled)
+                OnPauseMenuEvent?.Invoke();
         }
 
         public void OnHorisontalMovement(InputAction.CallbackContext context)

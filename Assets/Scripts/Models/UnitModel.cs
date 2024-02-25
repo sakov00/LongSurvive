@@ -14,13 +14,7 @@ namespace Assets.Scripts.Models
         [field: SerializeField, Range(1, 4)] public float MovementSpeed { get; private set; }
         [field: SerializeField, Range(0,100)] public float HealthPoints { get; private set; }
 
-        protected UnitConfig unitConfig;
-
-        [Inject]
-        public void Construct(UnitConfig unitConfig)
-        {
-            this.unitConfig = unitConfig;
-        }
+        [Inject] protected UnitConfig unitConfig;
 
         public virtual void Reset()
         {

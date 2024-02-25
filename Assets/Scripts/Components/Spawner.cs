@@ -38,15 +38,5 @@ namespace Assets.Scripts.Components
                 newObject.transform.rotation = randomSpawnPoint.rotation;
             }
         }
-
-        public void StartSpawning()
-        {
-            enabled = true;
-        }
-
-        public void StopSpawning()
-        {
-            enabled = false;
-        }
     }
 }
