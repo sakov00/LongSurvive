@@ -1,10 +1,9 @@
 using Assets.Scripts.Components;
-using Assets.Scripts.Controllers.Game;
-using Assets.Scripts.Controllers.Menu;
-using Assets.Scripts.Controllers.Player;
-using Assets.Scripts.Models;
+using Assets.Scripts.Game;
+using Assets.Scripts.Player.Controllers;
+using Assets.Scripts.Player.Models;
+using Assets.Scripts.Player.Views;
 using Assets.Scripts.ScriptableObjects.Scripts;
-using Assets.Scripts.Views;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +15,7 @@ namespace Assets.Scripts.Installers
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private PlayerInputController playerInputController;
         [SerializeField] private PlayerMovementController playerMovementController;
+        [SerializeField] private CameraController cameraController;
 
         [SerializeField] private GameController gameController;
         [SerializeField] private Spawner spawner;
@@ -37,6 +37,7 @@ namespace Assets.Scripts.Installers
             Container.Bind<PlayerView>().FromInstance(_playerView).AsSingle();
             Container.Bind<PlayerInputController>().FromInstance(playerInputController).AsSingle();
             Container.Bind<PlayerMovementController>().FromInstance(playerMovementController).AsSingle();
+            Container.Bind<CameraController>().FromInstance(cameraController).AsSingle();
         }
 
         private void BindMap() 
