@@ -23,7 +23,7 @@ namespace Assets.Scripts.Components
             timer += Time.deltaTime;
             if (timer >= spawnInterval)
             {
-                SpawnObject();
+                //SpawnObject();
                 timer = 0f;
             }
         }

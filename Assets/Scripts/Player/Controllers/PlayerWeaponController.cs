@@ -14,9 +14,6 @@ namespace Assets.Scripts.Player.Controllers
         [Inject] private PlayerInputController playerInputController;
         [Inject] private PlayerView playerView;
 
-        private List<WeaponController> weapons = new List<WeaponController>();
-        public WeaponController currentWeapon;
-
         private void Awake()
         {
             playerInputController.OnShootEvent += Attack;
@@ -24,7 +21,7 @@ namespace Assets.Scripts.Player.Controllers
 
         public void Attack()
         {
-            currentWeapon.Attack();
+            playerModel.currentWeapon.Attack();
         }
     }
 }
