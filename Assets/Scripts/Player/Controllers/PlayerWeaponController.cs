@@ -21,7 +21,7 @@ namespace Assets.Scripts.Player.Controllers
 
         public void Attack()
         {
-            playerModel.currentWeapon.Attack();
+            playerModel.currentWeapon.GetComponent<WeaponController>().Attack();
         }
     }
 }

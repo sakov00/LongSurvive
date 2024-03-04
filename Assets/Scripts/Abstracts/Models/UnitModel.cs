@@ -28,7 +28,10 @@ namespace Assets.Scripts.Abstracts.Models
             if (HealthPoints <= 0)
             {
                 OnDeath?.Invoke();
-                OnReturnToPool?.Invoke(gameObject);
+                if (OnReturnToPool != null)
+                    OnReturnToPool.Invoke(gameObject);
+                else
+                    Destroy(gameObject);
             }
         }
 

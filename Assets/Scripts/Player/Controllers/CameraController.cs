@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player.Views;
+using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Player.Controllers
 {
@@ -8,6 +10,8 @@ namespace Assets.Scripts.Player.Controllers
 
         [SerializeField] private float minimumVert = -80.0f;
         [SerializeField] private float maximumVert = 80.0f;
+
+        [Inject] private PlayerView playerView;
 
         private void Start()
         {
@@ -29,8 +33,8 @@ namespace Assets.Scripts.Player.Controllers
                 rotationX += 360;
 
             rotationX = Mathf.Clamp(rotationX, minimumVert, maximumVert);
-            var newRotation = new Vector3(rotationX, rotationY, 0);
-            transform.localEulerAngles = newRotation;
+            transform.localEulerAngles = new Vector3(rotationX, 0, 0);
+            playerView.Rotation(new Vector3(0, rotationY, 0));
         }
     }
 }

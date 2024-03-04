@@ -148,13 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e609155793d4aee49971c4883c87b513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valueDamage: 5
+  valueDamage: -5
   bulletSpeed: 0.5
-  lifetime: 5
+  lifetime: 2
   shootDirection: {x: 0, y: 0, z: 0}
   destroyBulletMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!114 &-1836460168402025972
 MonoBehaviour:
   m_ObjectHideFlags: 0

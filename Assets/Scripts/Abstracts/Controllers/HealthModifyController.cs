@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Abstracts.Models;
+using Assets.Scripts.Bullets.Models;
 using UnityEngine;
 
 namespace Assets.Scripts.Abstracts.Controllers
@@ -13,5 +14,14 @@ namespace Assets.Scripts.Abstracts.Controllers
         }
 
         public abstract void HealthModify(float value);
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            var bullet = collision.gameObject.GetComponent<BulletModel>();
+            if (bullet != null)
+            {
+                HealthModify(bullet.valueDamage);
+            }
+        }
     }
 }

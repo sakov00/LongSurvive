@@ -6,7 +6,7 @@ namespace Assets.Scripts.Enemy.Controllers
     public class DetectionController : MonoBehaviour
     {
         [SerializeField] private LayerMask layerMask;
-        [SerializeField] private float detectionRange = 10f;
+        [SerializeField] private float detectionRange = 20f;
         [SerializeField] private float viewAngle = 360f;
 
         public bool IsVisiblePlayer;
@@ -19,9 +19,9 @@ namespace Assets.Scripts.Enemy.Controllers
 
         private bool CanSeePlayer()
         {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, detectionRange, layerMask);
+            var colliders = Physics.OverlapSphere(transform.position, detectionRange, layerMask);
 
-            foreach (Collider2D collider in colliders)
+            foreach (Collider collider in colliders)
             {
                 if (collider.GetComponent<PlayerModel>() != null)
                 {

@@ -10,8 +10,8 @@ namespace Assets.Scripts.Player.Models
     public class PlayerModel : UnitModel
     {
         [field: SerializeField, Range(0, 100)] public float Score { get; private set; }
-        public List<WeaponController> weapons;
-        public WeaponController currentWeapon;
+        public List<GameObject> weapons;
+        public GameObject currentWeapon;
 
         [Inject] protected GameController gameController;
 

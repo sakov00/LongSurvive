@@ -17,31 +17,41 @@ namespace Assets.Scripts.Bullets.Controllers
         protected BulletModel bulletModel;
         protected BulletView bulletView;
 
+        private float deltaLifetime;
+
         protected virtual void Awake()
         {
             bulletModel = GetComponent<BulletModel>();
             bulletView = GetComponent<BulletView>();
         }
 
-        private void Start()
-        {
-            StartCoroutine(ReturnToPoolAfterLifetime());
-        }
-
-        private IEnumerator ReturnToPoolAfterLifetime()
-        {
-            yield return new WaitForSeconds(bulletModel.lifetime);
-            bulletModel.ReturnToPool();
-        }
-
         private void FixedUpdate()
         {
             Move();
+            ReturnToPoolAfterLifetime();
         }
 
-        public void Move()
+        private void Move()
         {
             bulletView.Move(bulletModel.shootDirection * bulletModel.bulletSpeed);
+        }
+
+        private void ReturnToPoolAfterLifetime()
+        {
+            deltaLifetime += Time.fixedDeltaTime;
+            if (deltaLifetime > bulletModel.lifetime)
+            { 
+                bulletModel.ReturnToPool();
+                deltaLifetime = 0f;
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if ((bulletModel.destroyBulletMask & (1 << collision.gameObject.layer)) != 0)
+            {
+                bulletModel.ReturnToPool();
+            }
         }
     }
 }

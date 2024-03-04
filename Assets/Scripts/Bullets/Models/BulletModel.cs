@@ -12,7 +12,7 @@ namespace Assets.Scripts.Bullets.Models
     {
         public float valueDamage;
         public float bulletSpeed;
-        public float lifetime = 5f;
+        public float lifetime = 2f;
         public Vector3 shootDirection;
         public LayerMask destroyBulletMask;
 
@@ -21,14 +21,6 @@ namespace Assets.Scripts.Bullets.Models
         public void ReturnToPool()
         {
             OnReturnToPool.Invoke(gameObject);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if ((destroyBulletMask & (1 << collision.gameObject.layer)) != 0)
-            {
-                ReturnToPool();
-            }
         }
     }
 }

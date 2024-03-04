@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Player.Models;
 using Assets.Scripts.Player.Views;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Assets.Scripts.Player.Controllers
@@ -19,13 +20,16 @@ namespace Assets.Scripts.Player.Controllers
 
         public void Move(float horizontalInput, float verticalInput)
         {
-            Vector3 moveDirection = cameraController.transform.forward;
-            moveDirection.y = 0;
-            moveDirection.Normalize();
-
-            Vector3 movement = (moveDirection * verticalInput + cameraController.transform.right * horizontalInput).normalized;
+            Vector3 movement = (transform.forward * verticalInput + transform.right * horizontalInput).normalized;
             playerView.Move(movement * playerModel.MovementSpeed);
         }
 
+        private void OnDrawGizmos()
+        {
+            // Draw a line to visualize the move direction
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward);
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward);
+        }
     }
 }

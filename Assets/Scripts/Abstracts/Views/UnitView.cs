@@ -18,7 +18,7 @@ namespace Assets.Scripts.Abstracts.Views
 
         public void Rotation(Vector3 rotation)
         {
-            transform.localEulerAngles = rotation;
+            transform.localEulerAngles += rotation;
         }
     }
 }
