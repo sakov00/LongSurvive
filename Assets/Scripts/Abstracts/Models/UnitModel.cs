@@ -8,11 +8,12 @@ namespace Assets.Scripts.Abstracts.Models
 {
     public abstract class UnitModel : MonoBehaviour, IObjectPool, IResetable
     {
+        [field: SerializeField, Range(0, 100)] public float JumpForce { get; private set; }
+        [field: SerializeField, Range(0, 10)] public float MovementSpeed { get; private set; }
+        [field: SerializeField, Range(0, 100)] public float HealthPoints { get; private set; }
+
         public event Action OnDeath;
         public event Action<GameObject> OnReturnToPool;
-
-        [field: SerializeField, Range(0, 4)] public float MovementSpeed { get; private set; }
-        [field: SerializeField, Range(0,100)] public float HealthPoints { get; private set; }
 
         [Inject] protected UnitConfig unitConfig;
 

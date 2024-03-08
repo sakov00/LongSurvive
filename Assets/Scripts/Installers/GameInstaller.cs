@@ -16,6 +16,7 @@ namespace Assets.Scripts.Installers
         [SerializeField] private PlayerInputController playerInputController;
         [SerializeField] private PlayerMovementController playerMovementController;
         [SerializeField] private CameraController cameraController;
+        [SerializeField] private Camera _camera;
 
         [SerializeField] private GameController gameController;
         [SerializeField] private Spawner spawner;
@@ -38,9 +39,10 @@ namespace Assets.Scripts.Installers
             Container.Bind<PlayerInputController>().FromInstance(playerInputController).AsSingle();
             Container.Bind<PlayerMovementController>().FromInstance(playerMovementController).AsSingle();
             Container.Bind<CameraController>().FromInstance(cameraController).AsSingle();
+            Container.Bind<Camera>().FromInstance(_camera).AsSingle();
         }
 
-        private void BindMap() 
+        private void BindMap()
         {
             Container.Bind<GameController>().FromInstance(gameController).AsSingle();
             Container.Bind<Spawner>().FromInstance(spawner).AsSingle();

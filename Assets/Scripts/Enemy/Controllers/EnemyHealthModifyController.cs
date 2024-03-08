@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Abstracts.Controllers;
-using Assets.Scripts.Bullets;
-using UnityEngine;
 
 namespace Assets.Scripts.Enemy.Controllers
 {

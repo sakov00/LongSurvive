@@ -6,17 +6,17 @@ namespace Assets.Scripts.Weapons.Controllers
 {
     public class KnifeController : MeleeWeaponController
     {
-        private KnifeModel KnifeModel { get { return (KnifeModel)weaponModel; }}
+        private KnifeModel KnifeModel { get { return (KnifeModel)weaponModel; } }
 
         public override void Attack()
         {
             RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, KnifeModel.attackRange, KnifeModel.attackMask))
+            if (Physics.Raycast(transform.position, transform.forward, out hitInfo, KnifeModel.AttackRange, KnifeModel.AttackMask))
             {
                 HealthModifyController targetHealth = hitInfo.collider.GetComponent<HealthModifyController>();
                 if (targetHealth != null)
                 {
-                    targetHealth.HealthModify(KnifeModel.damage);
+                    targetHealth.HealthModify(KnifeModel.Damage);
                 }
             }
         }
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Weapons.Controllers
         void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, transform.forward * KnifeModel.attackRange);
+            Gizmos.DrawRay(transform.position, transform.forward * KnifeModel.AttackRange);
         }
     }
 }

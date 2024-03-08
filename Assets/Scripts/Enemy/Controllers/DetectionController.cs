@@ -9,6 +9,8 @@ namespace Assets.Scripts.Enemy.Controllers
         [SerializeField] private float detectionRange = 20f;
         [SerializeField] private float viewAngle = 360f;
 
+        private Collider[] colliders = new Collider[4];
+
         public bool IsVisiblePlayer;
         public Transform NearPlayerTransform;
 
@@ -19,13 +21,12 @@ namespace Assets.Scripts.Enemy.Controllers
 
         private bool CanSeePlayer()
         {
-            var colliders = Physics.OverlapSphere(transform.position, detectionRange, layerMask);
-
-            foreach (Collider collider in colliders)
+            int colliderCount = Physics.OverlapSphereNonAlloc(transform.position, detectionRange, colliders, layerMask);
+            for (int i = 0; i < colliderCount; i++)
             {
-                if (collider.GetComponent<PlayerModel>() != null)
+                if (colliders[i].GetComponent<PlayerModel>() != null)
                 {
-                    NearPlayerTransform = collider.transform;
+                    NearPlayerTransform = colliders[i].transform;
                     return true;
                 }
             }

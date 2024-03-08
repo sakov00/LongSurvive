@@ -162,9 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339712f8e99714b46a0fe0e4ad63174b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPoint: {fileID: 1077447233074091568}
-  shootInSecond: 0.2
-  canShoot: 1
+  <CanAttack>k__BackingField: 1
+  <ShootPoint>k__BackingField: {fileID: 1077447233074091568}
+  <ShootInSecond>k__BackingField: 0.2
 --- !u!1 &8703722074958687282
 GameObject:
   m_ObjectHideFlags: 0

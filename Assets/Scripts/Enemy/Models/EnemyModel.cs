@@ -15,7 +15,7 @@ namespace Assets.Scripts.Enemy.Models
 
         protected override void Die()
         {
-            Debug.Log("Eneme is dead");
+            Debug.Log("Enemy is dead");
         }
     }
 }

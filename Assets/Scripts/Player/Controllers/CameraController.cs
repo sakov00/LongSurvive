@@ -6,7 +6,7 @@ namespace Assets.Scripts.Player.Controllers
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private float sensitivity = 15.0f;
+        [SerializeField] private float sensitivity = 10.0f;
 
         [SerializeField] private float minimumVert = -80.0f;
         [SerializeField] private float maximumVert = 80.0f;
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player.Controllers
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        void FixedUpdate()
+        void LateUpdate()
         {
             var mouseX = Input.GetAxis("Mouse X") * sensitivity;
             var mouseY = Input.GetAxis("Mouse Y") * sensitivity;
@@ -29,12 +29,11 @@ namespace Assets.Scripts.Player.Controllers
 
             if (rotationX > 180)
                 rotationX -= 360;
-            else if(rotationX < -180)
+            else if (rotationX < -180)
                 rotationX += 360;
 
             rotationX = Mathf.Clamp(rotationX, minimumVert, maximumVert);
-            transform.localEulerAngles = new Vector3(rotationX, 0, 0);
-            playerView.Rotation(new Vector3(0, rotationY, 0));
+            transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
         }
     }
 }

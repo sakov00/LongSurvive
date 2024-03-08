@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Components;
-using Assets.Scripts.Weapons.Models;
+﻿using Assets.Scripts.Weapons.Models;
 using Assets.Scripts.Weapons.Views;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace Assets.Scripts.Weapons.Controllers
         protected WeaponModel weaponModel;
         protected WeaponView weaponView;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             weaponModel = GetComponent<WeaponModel>();
             weaponView = GetComponent<WeaponView>();

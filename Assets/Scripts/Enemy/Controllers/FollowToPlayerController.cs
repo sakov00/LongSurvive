@@ -11,7 +11,7 @@ namespace Assets.Scripts.Enemy.Controllers
         protected override void Awake()
         {
             base.Awake();
-            detectionController = GetComponent<DetectionController>(); 
+            detectionController = GetComponent<DetectionController>();
         }
 
         public override void Move()
@@ -19,7 +19,8 @@ namespace Assets.Scripts.Enemy.Controllers
             if (detectionController.IsVisiblePlayer)
             {
                 var direction = (detectionController.NearPlayerTransform.position - transform.position).normalized;
-                enemyView.Move(direction * enemyModel.MovementSpeed);
+                unitView.Move(direction * unitModel.MovementSpeed);
+                unitView.LookAt(detectionController.NearPlayerTransform);
             }
         }
     }

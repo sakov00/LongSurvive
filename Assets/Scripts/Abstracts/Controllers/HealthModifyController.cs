@@ -20,7 +20,7 @@ namespace Assets.Scripts.Abstracts.Controllers
             var bullet = collision.gameObject.GetComponent<BulletModel>();
             if (bullet != null)
             {
-                HealthModify(bullet.valueDamage);
+                HealthModify(bullet.ValueDamage);
             }
         }
     }
