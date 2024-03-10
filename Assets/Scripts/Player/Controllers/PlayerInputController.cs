@@ -10,11 +10,12 @@ namespace Assets.Scripts.Player.Controllers
         private float verticalInput;
         private float shootInput;
 
+        public event Action OnPauseMenuEvent;
         public event Action<float, float> OnMovementEvent;
         public event Action OnJumpEvent;
         public event Action<float> OnScrollEvent;
         public event Action OnShootEvent;
-        public event Action OnPauseMenuEvent;
+        public event Action OnInteractEvent;
 
         private void FixedUpdate()
         {
@@ -26,11 +27,11 @@ namespace Assets.Scripts.Player.Controllers
 
         public void OnPauseMenu(InputAction.CallbackContext context)
         {
-            if (context.canceled)
+            if (context.started)
                 OnPauseMenuEvent?.Invoke();
         }
 
-        public void OnHorisontalMovement(InputAction.CallbackContext context)
+        public void OnHorizontalMovement(InputAction.CallbackContext context)
         {
             horizontalInput = context.ReadValue<float>();
         }
@@ -62,6 +63,12 @@ namespace Assets.Scripts.Player.Controllers
         public void OnShoot(InputAction.CallbackContext context)
         {
             shootInput = context.ReadValue<float>();
+        }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                OnInteractEvent?.Invoke();
         }
     }
 }

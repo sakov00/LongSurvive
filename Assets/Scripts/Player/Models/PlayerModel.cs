@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Abstracts.Models;
 using Assets.Scripts.Game;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -22,6 +23,11 @@ namespace Assets.Scripts.Player.Models
         protected override void Die()
         {
             gameController.GameOver();
+        }
+
+        public void PickupNewWeapon()
+        {
+
         }
     }
 }

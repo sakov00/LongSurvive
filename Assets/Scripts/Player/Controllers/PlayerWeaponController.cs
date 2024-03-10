@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Player.Models;
-using Assets.Scripts.Player.Views;
+﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Player.Models;
 using Assets.Scripts.Weapons.Controllers;
 using Assets.Scripts.Weapons.Models;
 using System.Linq;
@@ -10,19 +10,22 @@ namespace Assets.Scripts.Player.Controllers
 {
     public class PlayerWeaponController : MonoBehaviour
     {
+        [SerializeField] private Transform transformWeapon;
+
         [Inject] private PlayerModel playerModel;
         [Inject] private PlayerInputController playerInputController;
-        [Inject] private PlayerView playerView;
+        [Inject] private PlayerInteractController playerInteractController;
 
         private WeaponController weaponController;
-        private WeaponModel weaponModel;
 
         private void Awake()
         {
-            weaponModel = playerModel.CurrentWeapon.GetComponent<WeaponModel>();
             weaponController = playerModel.CurrentWeapon.GetComponent<WeaponController>();
+
             playerInputController.OnShootEvent += Attack;
             playerInputController.OnScrollEvent += ChangeCurrentWeapon;
+
+            playerInteractController.OnObjectPickuped += PickupNewWeapon;
         }
 
         public void Attack()
@@ -45,9 +48,27 @@ namespace Assets.Scripts.Player.Controllers
             playerModel.CurrentWeapon = playerModel.Weapons.ElementAt(nextIndex);
             playerModel.CurrentWeapon.SetActive(true);
 
-            weaponModel = playerModel.CurrentWeapon.GetComponent<WeaponModel>();
             weaponController = playerModel.CurrentWeapon.GetComponent<WeaponController>();
+            playerModel.CurrentWeapon.transform.position = transformWeapon.position;
+        }
 
+        public void PickupNewWeapon(IPickupable pickupableObject)
+        {
+            if (pickupableObject is WeaponModel weaponModel)
+            {
+                var newWeapon = weaponModel.gameObject;
+                playerModel.CurrentWeapon.SetActive(false);
+
+                playerModel.Weapons.Add(newWeapon);
+                playerModel.CurrentWeapon = newWeapon;
+                playerModel.CurrentWeapon.SetActive(true);
+
+                newWeapon.transform.SetParent(transformWeapon.parent);
+                newWeapon.transform.localEulerAngles = new Vector3(90, 0, 0);
+                newWeapon.transform.position = transformWeapon.position;
+
+                weaponController = newWeapon.GetComponent<WeaponController>();
+            }
         }
     }
 }

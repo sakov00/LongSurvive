@@ -15,6 +15,8 @@ namespace Assets.Scripts.Installers
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private PlayerInputController playerInputController;
         [SerializeField] private PlayerMovementController playerMovementController;
+        [SerializeField] private PlayerWeaponController playerWeaponController;
+        [SerializeField] private PlayerInteractController playerInteractController;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private Camera _camera;
 
@@ -38,6 +40,8 @@ namespace Assets.Scripts.Installers
             Container.Bind<PlayerView>().FromInstance(_playerView).AsSingle();
             Container.Bind<PlayerInputController>().FromInstance(playerInputController).AsSingle();
             Container.Bind<PlayerMovementController>().FromInstance(playerMovementController).AsSingle();
+            Container.Bind<PlayerWeaponController>().FromInstance(playerWeaponController).AsSingle();
+            Container.Bind<PlayerInteractController>().FromInstance(playerInteractController).AsSingle();
             Container.Bind<CameraController>().FromInstance(cameraController).AsSingle();
             Container.Bind<Camera>().FromInstance(_camera).AsSingle();
         }

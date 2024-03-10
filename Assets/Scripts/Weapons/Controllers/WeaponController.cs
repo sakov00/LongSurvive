@@ -16,5 +16,10 @@ namespace Assets.Scripts.Weapons.Controllers
         }
 
         public abstract void Attack();
+
+        private void OnEnable()
+        {
+            weaponModel.CanAttack = true;
+        }
     }
 }
