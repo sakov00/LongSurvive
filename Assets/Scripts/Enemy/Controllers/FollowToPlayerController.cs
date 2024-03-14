@@ -13,15 +13,26 @@ namespace Assets.Scripts.Enemy.Controllers
             base.Awake();
             detectionController = GetComponent<DetectionController>();
         }
-
-        public override void Move()
+        protected override void Update()
         {
+            base.Update();
+
             if (detectionController.IsVisiblePlayer)
             {
-                var direction = (detectionController.NearPlayerTransform.position - transform.position).normalized;
-                unitView.Move(direction * unitModel.MovementSpeed);
-                unitView.LookAt(detectionController.NearPlayerTransform);
+                var movementDirection = (detectionController.NearPlayerTransform.position - transform.position).normalized;
+                Move(movementDirection);
             }
+        }
+
+        protected override void Move(Vector3 movementDirection)
+        {
+            unitView.Move(movementDirection * unitModel.MovementSpeed * Time.deltaTime);
+            unitView.LookAt(detectionController.NearPlayerTransform);
+        }
+
+        protected override void Jump()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

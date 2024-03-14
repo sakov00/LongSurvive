@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Player.Views;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Player.Controllers
 {
@@ -11,18 +9,15 @@ namespace Assets.Scripts.Player.Controllers
         [SerializeField] private float minimumVert = -80.0f;
         [SerializeField] private float maximumVert = 80.0f;
 
-        [Inject] private PlayerView playerView;
-
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        void LateUpdate()
+        void Update()
         {
-            var mouseX = Input.GetAxis("Mouse X") * sensitivity;
-            var mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-
+            var mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+            var mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
             var rotationX = transform.localEulerAngles.x - mouseY;
             var rotationY = transform.localEulerAngles.y + mouseX;
@@ -33,7 +28,8 @@ namespace Assets.Scripts.Player.Controllers
                 rotationX += 360;
 
             rotationX = Mathf.Clamp(rotationX, minimumVert, maximumVert);
-            transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+            transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            transform.parent.Rotate(Vector3.up * rotationY);
         }
     }
 }

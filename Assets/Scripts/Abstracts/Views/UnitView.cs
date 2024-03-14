@@ -5,28 +5,18 @@ namespace Assets.Scripts.Abstracts.Views
 {
     public abstract class UnitView : MonoBehaviour
     {
-        protected Rigidbody _rigidbody;
         protected UnitModel unitModel;
+        protected CharacterController characterController;
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
             unitModel = GetComponent<UnitModel>();
+            characterController = GetComponent<CharacterController>();
         }
 
         public void Move(Vector3 movement)
         {
-            _rigidbody.MovePosition(transform.position + movement);
-        }
-
-        public void Jump(float jumpForce)
-        {
-            _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-
-        public void Rotation(Vector3 rotation)
-        {
-            transform.localEulerAngles += rotation;
+            characterController.Move(movement);
         }
 
         public void LookAt(Transform transform)

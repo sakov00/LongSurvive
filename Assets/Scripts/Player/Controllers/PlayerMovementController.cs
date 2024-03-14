@@ -1,42 +1,38 @@
-﻿using Assets.Scripts.Player.Models;
-using Assets.Scripts.Player.Views;
+﻿using Assets.Scripts.Abstracts.Controllers;
 using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Player.Controllers
 {
-    public class PlayerMovementController : MonoBehaviour
+    public class PlayerMovementController : MovementController
     {
-        [Inject] private PlayerModel playerModel;
         [Inject] private PlayerInputController playerInputController;
-        [Inject] private CameraController cameraController;
-        [Inject] private PlayerView playerView;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             playerInputController.OnMovementEvent += Move;
             playerInputController.OnJumpEvent += Jump;
         }
 
-        public void Move(float horizontalInput, float verticalInput)
+        protected override void Update()
         {
-            Vector3 movement = (cameraController.transform.forward * verticalInput + cameraController.transform.right * horizontalInput).normalized;
-            movement.y = 0;
-            Vector3 movePosition = movement * playerModel.MovementSpeed * Time.fixedDeltaTime;
-            playerView.Move(movePosition);
+            base.Update();
         }
 
-        public void Jump()
+        protected override void Move(Vector3 movementInput)
         {
-            if (IsGrounded())
+            Vector3 movement = (transform.right * movementInput.x + transform.forward * movementInput.z) * unitModel.MovementSpeed * Time.deltaTime;
+            unitView.Move(movement);
+        }
+
+        protected override void Jump()
+        {
+            if (isGrounded)
             {
-                playerView.Jump(playerModel.JumpForce);
+                velocity.y = Mathf.Sqrt(unitModel.JumpHeight * -2f * gravity) * Time.deltaTime;
+                unitView.Move(velocity);
             }
-        }
-
-        private bool IsGrounded()
-        {
-            return Physics.Raycast(transform.position, Vector3.down, 2);
         }
     }
 }

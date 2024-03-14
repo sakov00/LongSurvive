@@ -12,10 +12,5 @@ namespace Assets.Scripts.Enemy.Models
             base.Reset();
             ContactDamageValue = unitConfig.ContactDamageValue;
         }
-
-        protected override void Die()
-        {
-            Debug.Log("Enemy is dead");
-        }
     }
 }

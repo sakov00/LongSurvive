@@ -6,20 +6,19 @@ namespace Assets.Scripts.Player.Controllers
 {
     public class PlayerInputController : MonoBehaviour
     {
-        private float horizontalInput;
-        private float verticalInput;
+        private Vector3 movementInput;
         private float shootInput;
 
         public event Action OnPauseMenuEvent;
-        public event Action<float, float> OnMovementEvent;
+        public event Action<Vector3> OnMovementEvent;
         public event Action OnJumpEvent;
         public event Action<float> OnScrollEvent;
         public event Action OnShootEvent;
         public event Action OnInteractEvent;
 
-        private void FixedUpdate()
+        private void Update()
         {
-            OnMovementEvent?.Invoke(horizontalInput, verticalInput);
+            OnMovementEvent?.Invoke(movementInput);
 
             if (shootInput == 1)
                 OnShootEvent?.Invoke();
@@ -33,12 +32,12 @@ namespace Assets.Scripts.Player.Controllers
 
         public void OnHorizontalMovement(InputAction.CallbackContext context)
         {
-            horizontalInput = context.ReadValue<float>();
+            movementInput.x = context.ReadValue<float>();
         }
 
         public void OnVerticalMovement(InputAction.CallbackContext context)
         {
-            verticalInput = context.ReadValue<float>();
+            movementInput.z = context.ReadValue<float>();
         }
 
         public void OnJump(InputAction.CallbackContext context)

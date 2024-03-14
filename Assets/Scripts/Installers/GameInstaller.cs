@@ -41,6 +41,8 @@ namespace Assets.Scripts.Installers
             Container.Bind<PlayerInputController>().FromInstance(playerInputController).AsSingle();
             Container.Bind<PlayerMovementController>().FromInstance(playerMovementController).AsSingle();
             Container.Bind<PlayerWeaponController>().FromInstance(playerWeaponController).AsSingle();
+            Container.Bind<PlayerPickupAbleController>().AsSingle();
+            Container.Bind<PlayerClickableController>().AsSingle();
             Container.Bind<PlayerInteractController>().FromInstance(playerInteractController).AsSingle();
             Container.Bind<CameraController>().FromInstance(cameraController).AsSingle();
             Container.Bind<Camera>().FromInstance(_camera).AsSingle();

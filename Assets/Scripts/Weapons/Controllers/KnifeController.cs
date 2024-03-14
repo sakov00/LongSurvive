@@ -13,7 +13,7 @@ namespace Assets.Scripts.Weapons.Controllers
             RaycastHit hitInfo;
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, KnifeModel.AttackRange, KnifeModel.AttackMask))
             {
-                HealthModifyController targetHealth = hitInfo.collider.GetComponent<HealthModifyController>();
+                UnitHealthController targetHealth = hitInfo.collider.GetComponent<UnitHealthController>();
                 if (targetHealth != null)
                 {
                     targetHealth.HealthModify(KnifeModel.Damage);

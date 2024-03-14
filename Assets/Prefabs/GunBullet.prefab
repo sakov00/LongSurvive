@@ -154,7 +154,7 @@ MonoBehaviour:
   <ShootDirection>k__BackingField: {x: 0, y: 0, z: 0}
   <DestroyBulletMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!114 &-1836460168402025972
 MonoBehaviour:
   m_ObjectHideFlags: 0

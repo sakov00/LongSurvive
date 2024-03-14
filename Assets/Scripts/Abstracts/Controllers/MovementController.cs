@@ -6,10 +6,20 @@ namespace Assets.Scripts.Abstracts.Controllers
 {
     public abstract class MovementController : MonoBehaviour
     {
+        [SerializeField] private Transform groundCheck;
+        [SerializeField] private float groundDistance = 0.5f;
+        [SerializeField] private LayerMask groundMask;
+
+        [SerializeField] protected float gravity;
+
+        protected Vector3 velocity;
+        protected bool isGrounded;
+
         protected UnitModel unitModel;
         protected UnitView unitView;
 
-        public abstract void Move();
+        protected abstract void Move(Vector3 newPosition);
+        protected abstract void Jump();
 
         protected virtual void Awake()
         {
@@ -17,9 +27,21 @@ namespace Assets.Scripts.Abstracts.Controllers
             unitView = GetComponent<UnitView>();
         }
 
-        void FixedUpdate()
+        protected virtual void Update()
         {
-            Move();
+            ActiveGravity();
+        }
+
+        private void ActiveGravity()
+        {
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = 0;
+            }
+
+            velocity.y += gravity * Mathf.Pow(Time.deltaTime, 2);
+            unitView.Move(velocity);
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player.Models;
+﻿using Assets.Scripts.Player.Models;
 using Assets.Scripts.Weapons.Controllers;
-using Assets.Scripts.Weapons.Models;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -14,18 +13,15 @@ namespace Assets.Scripts.Player.Controllers
 
         [Inject] private PlayerModel playerModel;
         [Inject] private PlayerInputController playerInputController;
-        [Inject] private PlayerInteractController playerInteractController;
 
         private WeaponController weaponController;
 
         private void Awake()
         {
-            weaponController = playerModel.CurrentWeapon.GetComponent<WeaponController>();
-
             playerInputController.OnShootEvent += Attack;
             playerInputController.OnScrollEvent += ChangeCurrentWeapon;
 
-            playerInteractController.OnObjectPickuped += PickupNewWeapon;
+            playerModel.CurrentWeapon.Subscribe(x => SetNextCurrentWeapon(x));
         }
 
         public void Attack()
@@ -35,8 +31,7 @@ namespace Assets.Scripts.Player.Controllers
 
         public void ChangeCurrentWeapon(float scrollInput)
         {
-            playerModel.CurrentWeapon.SetActive(false);
-            var currentIndex = playerModel.Weapons.IndexOf(playerModel.CurrentWeapon);
+            var currentIndex = playerModel.Weapons.IndexOf(playerModel.CurrentWeapon.Value);
             var nextIndex = currentIndex + (int)scrollInput;
 
             if (nextIndex < 0)
@@ -45,30 +40,21 @@ namespace Assets.Scripts.Player.Controllers
             if (nextIndex >= playerModel.Weapons.Count)
                 nextIndex = 0;
 
-            playerModel.CurrentWeapon = playerModel.Weapons.ElementAt(nextIndex);
-            playerModel.CurrentWeapon.SetActive(true);
-
-            weaponController = playerModel.CurrentWeapon.GetComponent<WeaponController>();
-            playerModel.CurrentWeapon.transform.position = transformWeapon.position;
+            playerModel.CurrentWeapon.Value = playerModel.Weapons.ElementAtOrDefault(nextIndex);
         }
 
-        public void PickupNewWeapon(IPickupable pickupableObject)
+        private void SetNextCurrentWeapon(GameObject weapon)
         {
-            if (pickupableObject is WeaponModel weaponModel)
+            if (!playerModel.Weapons.Contains(weapon))
             {
-                var newWeapon = weaponModel.gameObject;
-                playerModel.CurrentWeapon.SetActive(false);
-
-                playerModel.Weapons.Add(newWeapon);
-                playerModel.CurrentWeapon = newWeapon;
-                playerModel.CurrentWeapon.SetActive(true);
-
-                newWeapon.transform.SetParent(transformWeapon.parent);
-                newWeapon.transform.localEulerAngles = new Vector3(90, 0, 0);
-                newWeapon.transform.position = transformWeapon.position;
-
-                weaponController = newWeapon.GetComponent<WeaponController>();
+                playerModel.Weapons.Add(weapon);
+                weapon.transform.SetParent(transformWeapon.parent);
             }
+
+            playerModel.Weapons.ForEach(x => x.SetActive(false));
+            weapon.SetActive(true);
+            weaponController = playerModel.CurrentWeapon.Value.GetComponent<WeaponController>();
+            playerModel.CurrentWeapon.Value.transform.position = transformWeapon.position;
         }
     }
 }
