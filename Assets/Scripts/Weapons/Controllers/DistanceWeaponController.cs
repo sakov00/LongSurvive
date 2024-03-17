@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Bullets.Models;
 using Assets.Scripts.Components;
 using Assets.Scripts.Weapons.Models;
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 namespace Assets.Scripts.Weapons.Controllers
 {
