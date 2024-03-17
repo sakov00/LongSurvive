@@ -1,30 +1,27 @@
-﻿using System;
+﻿using Assets.Scripts.Player.Models;
+using System;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.Scripts.Player.Controllers
 {
     public class PlayerInteractController : MonoBehaviour
     {
+        private PlayerModel playerModel;
         private PlayerPickupAbleController playerPickupAbleController;
         private PlayerClickableController playerClickableController;
         private PlayerInputController playerInputController;
-        private Camera _camera;
 
+        [SerializeField] private Camera _camera;
         [SerializeField] private float interactDistance = 3f;
         [SerializeField] private LayerMask interactableLayer;
 
-        [Inject]
-        private void Construct(PlayerInputController playerInputController, Camera camera, PlayerPickupAbleController playerPickupAbleController, PlayerClickableController playerClickableController)
-        {
-            this.playerPickupAbleController = playerPickupAbleController;
-            this.playerClickableController = playerClickableController;
-            this.playerInputController = playerInputController;
-            this._camera = camera;
-        }
-
         private void Awake()
         {
+            playerModel = GetComponent<PlayerModel>();
+            playerInputController = GetComponent<PlayerInputController>();
+            playerPickupAbleController = new PlayerPickupAbleController(playerModel);
+            playerClickableController = new PlayerClickableController();
+
             playerInputController.OnInteractEvent += Interact;
         }
 

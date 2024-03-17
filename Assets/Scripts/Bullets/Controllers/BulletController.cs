@@ -19,7 +19,7 @@ namespace Assets.Scripts.Bullets.Controllers
             bulletView = GetComponent<BulletView>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             Move();
             ReturnToPoolAfterLifetime();
@@ -27,12 +27,12 @@ namespace Assets.Scripts.Bullets.Controllers
 
         private void Move()
         {
-            bulletView.Move(bulletModel.ShootDirection * bulletModel.BulletSpeed);
+            bulletView.Move(bulletModel.ShootDirection * bulletModel.BulletSpeed * Time.deltaTime);
         }
 
         private void ReturnToPoolAfterLifetime()
         {
-            deltaLifetime += Time.fixedDeltaTime;
+            deltaLifetime += Time.deltaTime;
             if (deltaLifetime > bulletModel.Lifetime)
             {
                 bulletModel.ReturnToPool();

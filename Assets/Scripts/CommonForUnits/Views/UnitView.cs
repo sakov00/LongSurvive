@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Abstracts.Models;
+﻿using Assets.Scripts.CommonForUnits.Models;
 using UnityEngine;
 
-namespace Assets.Scripts.Abstracts.Views
+namespace Assets.Scripts.CommonForUnits.Views
 {
     public abstract class UnitView : MonoBehaviour
     {

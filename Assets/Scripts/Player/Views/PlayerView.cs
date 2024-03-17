@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Abstracts.Views;
+﻿using Assets.Scripts.CommonForUnits.Views;
 
 namespace Assets.Scripts.Player.Views
 {

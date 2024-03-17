@@ -15,7 +15,7 @@ namespace Assets.Scripts.Weapons.Controllers
             weaponView = GetComponent<WeaponView>();
         }
 
-        public abstract void Attack();
+        public abstract void Attack(Vector3 aimPoint);
 
         private void OnEnable()
         {

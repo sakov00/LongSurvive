@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Abstracts.Controllers;
+﻿using Assets.Scripts.CommonForUnits.Controllers;
 
 namespace Assets.Scripts.Enemy.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Abstracts.Controllers;
+﻿using Assets.Scripts.CommonForUnits.Controllers;
 using Assets.Scripts.Weapons.Models;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace Assets.Scripts.Weapons.Controllers
     {
         private KnifeModel KnifeModel { get { return (KnifeModel)weaponModel; } }
 
-        public override void Attack()
+        public override void Attack(Vector3 aimPoint)
         {
             RaycastHit hitInfo;
             if (Physics.Raycast(transform.position, transform.forward, out hitInfo, KnifeModel.AttackRange, KnifeModel.AttackMask))

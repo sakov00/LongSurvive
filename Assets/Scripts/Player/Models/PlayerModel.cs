@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Abstracts.Models;
+﻿using Assets.Scripts.CommonForUnits.Models;
 using System;
 using System.Collections.Generic;
 using UniRx;
@@ -8,8 +8,8 @@ namespace Assets.Scripts.Player.Models
 {
     public class PlayerModel : UnitModel
     {
-        public float Score { get; set; }
-        [field: SerializeField] public List<GameObject> Weapons { get; set; }
-        [field: SerializeField] public ReactiveProperty<GameObject> CurrentWeapon { get; set; }
+        public float Score;
+        public List<GameObject> Weapons;
+        public ReactiveProperty<GameObject> CurrentWeapon;
     }
 }

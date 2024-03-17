@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Abstracts.Controllers;
+﻿using Assets.Scripts.CommonForUnits.Controllers;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy.Controllers
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Enemy.Controllers
 
         protected override void Move(Vector3 movementDirection)
         {
-            unitView.Move(movementDirection * unitModel.MovementSpeed * Time.deltaTime);
+            unitView.Move(movementDirection * unitModel.movementSpeed * Time.deltaTime);
             unitView.LookAt(detectionController.NearPlayerTransform);
         }
 

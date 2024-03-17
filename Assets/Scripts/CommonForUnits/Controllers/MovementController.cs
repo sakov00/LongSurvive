@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Abstracts.Models;
-using Assets.Scripts.Abstracts.Views;
+﻿using Assets.Scripts.CommonForUnits.Models;
+using Assets.Scripts.CommonForUnits.Views;
 using UnityEngine;
 
-namespace Assets.Scripts.Abstracts.Controllers
+namespace Assets.Scripts.CommonForUnits.Controllers
 {
     public abstract class MovementController : MonoBehaviour
     {

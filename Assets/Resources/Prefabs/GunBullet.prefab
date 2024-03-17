@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 2031564227901461625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6115274, y: -7.4359713, z: 9.451396}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ValueDamage>k__BackingField: -5
-  <BulletSpeed>k__BackingField: 1
-  <Lifetime>k__BackingField: 2
+  <BulletSpeed>k__BackingField: 30
+  <Lifetime>k__BackingField: 5
   <ShootDirection>k__BackingField: {x: 0, y: 0, z: 0}
   <DestroyBulletMask>k__BackingField:
     serializedVersion: 2

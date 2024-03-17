@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Abstracts.Controllers;
-using Zenject;
+﻿using Assets.Scripts.CommonForUnits.Controllers;
 
 namespace Assets.Scripts.Player.Controllers
 {

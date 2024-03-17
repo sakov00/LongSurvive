@@ -3,17 +3,13 @@ using Assets.Scripts.Components;
 using Assets.Scripts.Weapons.Models;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.Scripts.Weapons.Controllers
 {
     [RequireComponent(typeof(ObjectPool))]
     public abstract class DistanceWeaponController : WeaponController
     {
-        private Vector3 shootDirection;
-
         protected ObjectPool objectPool;
-        [Inject] protected Camera _camera;
 
         protected override void Awake()
         {
@@ -23,29 +19,19 @@ namespace Assets.Scripts.Weapons.Controllers
 
         protected DistanceWeaponModel DistanceWeaponModel { get { return (DistanceWeaponModel)weaponModel; } }
 
-        public override void Attack()
+        public override void Attack(Vector3 aimPoint)
         {
             if (DistanceWeaponModel.CanAttack)
             {
-                StartCoroutine(ShootCoroutine());
+                StartCoroutine(ShootCoroutine(aimPoint));
             }
         }
 
-        private IEnumerator ShootCoroutine()
+        private IEnumerator ShootCoroutine(Vector3 aimPoint)
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
-            {
-                shootDirection = (hitInfo.point - DistanceWeaponModel.ShootPoint.position).normalized;
-            }
-            else
-            {
-                shootDirection = ray.direction;
-            }
-
             var bullet = objectPool.GetObjectFromPool();
             bullet.transform.position = DistanceWeaponModel.ShootPoint.position;
-            bullet.GetComponent<BulletModel>().ShootDirection = shootDirection;
+            bullet.GetComponent<BulletModel>().ShootDirection = aimPoint;
 
             DistanceWeaponModel.CanAttack = false;
             yield return new WaitForSeconds(DistanceWeaponModel.ShootInSecond);

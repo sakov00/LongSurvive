@@ -1,23 +1,26 @@
 ﻿using Assets.Scripts.Player.Models;
 using Assets.Scripts.Weapons.Controllers;
+using Assets.Scripts.Weapons.Models;
 using System.Linq;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.Scripts.Player.Controllers
 {
     public class PlayerWeaponController : MonoBehaviour
     {
-        [SerializeField] private Transform transformWeapon;
-
-        [Inject] private PlayerModel playerModel;
-        [Inject] private PlayerInputController playerInputController;
-
+        private PlayerModel playerModel;
+        private PlayerInputController playerInputController;
         private WeaponController weaponController;
+
+        [SerializeField] private Transform transformWeapon;
+        [SerializeField] private Camera _camera;
 
         private void Awake()
         {
+            playerModel = GetComponent<PlayerModel>();
+            playerInputController = GetComponent<PlayerInputController>();
+
             playerInputController.OnShootEvent += Attack;
             playerInputController.OnScrollEvent += ChangeCurrentWeapon;
 
@@ -26,7 +29,20 @@ namespace Assets.Scripts.Player.Controllers
 
         public void Attack()
         {
-            weaponController.Attack();
+            weaponController.Attack(GetShootDirection());
+        }
+
+        private Vector3 GetShootDirection()
+        {
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                return (hitInfo.point - playerModel.CurrentWeapon.Value.GetComponent<DistanceWeaponModel>().ShootPoint.position).normalized;
+            }
+            else
+            {
+                return ray.direction;
+            }
         }
 
         public void ChangeCurrentWeapon(float scrollInput)

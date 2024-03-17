@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Abstracts.Models;
+﻿using Assets.Scripts.CommonForUnits.Models;
 using Assets.Scripts.Bullets.Models;
 using UnityEngine;
 
-namespace Assets.Scripts.Abstracts.Controllers
+namespace Assets.Scripts.CommonForUnits.Controllers
 {
     public abstract class UnitHealthController : MonoBehaviour
     {

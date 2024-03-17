@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 1201265460468001218}
   - component: {fileID: -4730706487614770623}
   m_Layer: 0
-  m_Name: SimpleEnemy
+  m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 7614314926746353202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.345303, y: 0.5, z: 40.42}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -182,9 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7068c09f70b6a404d87038a40d6c34b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <JumpHeight>k__BackingField: 0
-  <MovementSpeed>k__BackingField: 10
-  <HealthPoints>k__BackingField: 10
+  jumpHeight: 3
+  movementSpeed: 10
+  healthPoints:
+    value: 10
   <ContactDamageValue>k__BackingField: -5
 --- !u!114 &4499398708294598765
 MonoBehaviour:

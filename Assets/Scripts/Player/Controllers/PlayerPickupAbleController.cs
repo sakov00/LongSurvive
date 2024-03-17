@@ -3,7 +3,6 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player.Models;
 using Assets.Scripts.Weapons.Models;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.Scripts.Player.Controllers
 {
@@ -11,7 +10,6 @@ namespace Assets.Scripts.Player.Controllers
     {
         private PlayerModel playerModel;
 
-        [Inject]
         public PlayerPickupAbleController(PlayerModel playerModel)
         {
             this.playerModel = playerModel;
