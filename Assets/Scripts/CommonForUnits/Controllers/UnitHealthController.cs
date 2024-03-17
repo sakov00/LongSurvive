@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.CommonForUnits.Models;
-using Assets.Scripts.Bullets.Models;
+﻿using Assets.Scripts.Bullets.Models;
+using Assets.Scripts.CommonForUnits.Models;
 using UnityEngine;
 
 namespace Assets.Scripts.CommonForUnits.Controllers
