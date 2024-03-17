@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Bullets.Models;
-using Assets.Scripts.Weapons.Models;
 using Assets.Scripts.Components;
+using Assets.Scripts.Weapons.Models;
 using System.Collections;
 using UnityEngine;
 
