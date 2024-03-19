@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
+﻿using Assets.Scripts.Components;
 
 namespace Assets.Scripts.Interfaces
 {
-    public interface IObjectPool
+    public interface IObjectPool<T>
     {
-        public event Action<GameObject> OnReturnToPool;
+        ObjectPool<T> ObjectPool { get; set; }
+
+        void ReturnToPool();
     }
 }

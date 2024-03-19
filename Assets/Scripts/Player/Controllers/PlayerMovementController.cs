@@ -15,11 +15,6 @@ namespace Assets.Scripts.Player.Controllers
             playerInputController.OnJumpEvent += Jump;
         }
 
-        protected override void Update()
-        {
-            base.Update();
-        }
-
         protected override void Move(Vector3 movementInput)
         {
             Vector3 movement = (transform.right * movementInput.x + transform.forward * movementInput.z) * unitModel.movementSpeed * Time.deltaTime;

@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Player.Models;
 using Assets.Scripts.Weapons.Controllers;
 using Assets.Scripts.Weapons.Models;
-using System.Linq;
+using System;
 using UniRx;
 using UnityEngine;
 
@@ -24,20 +24,28 @@ namespace Assets.Scripts.Player.Controllers
             playerInputController.OnShootEvent += Attack;
             playerInputController.OnScrollEvent += ChangeCurrentWeapon;
 
-            playerModel.CurrentWeapon.Subscribe(x => SetNextCurrentWeapon(x));
+            playerModel.CurrentWeapon.Subscribe(SetNextCurrentWeapon);
         }
 
         public void Attack()
         {
-            weaponController.Attack(GetShootDirection());
+            weaponController?.Attack(GetShootDirection());
         }
 
         private Vector3 GetShootDirection()
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            var distanceWeapon = playerModel.CurrentWeapon.Value.GetComponent<DistanceWeaponModel>();
+            if (distanceWeapon != null)
             {
-                return (hitInfo.point - playerModel.CurrentWeapon.Value.GetComponent<DistanceWeaponModel>().ShootPoint.position).normalized;
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    return (hitInfo.point - distanceWeapon.ShootPoint.position).normalized;
+                }
+                else
+                {
+                    return ray.direction;
+                }
             }
             else
             {
@@ -47,16 +55,12 @@ namespace Assets.Scripts.Player.Controllers
 
         public void ChangeCurrentWeapon(float scrollInput)
         {
-            var currentIndex = playerModel.Weapons.IndexOf(playerModel.CurrentWeapon.Value);
-            var nextIndex = currentIndex + (int)scrollInput;
-
+            int currentIndex = playerModel.Weapons.IndexOf(playerModel.CurrentWeapon.Value);
+            int nextIndex = (currentIndex + Mathf.RoundToInt(scrollInput)) % playerModel.Weapons.Count;
             if (nextIndex < 0)
-                nextIndex = playerModel.Weapons.Count - 1;
+                nextIndex += playerModel.Weapons.Count;
 
-            if (nextIndex >= playerModel.Weapons.Count)
-                nextIndex = 0;
-
-            playerModel.CurrentWeapon.Value = playerModel.Weapons.ElementAtOrDefault(nextIndex);
+            playerModel.CurrentWeapon.Value = playerModel.Weapons[nextIndex];
         }
 
         private void SetNextCurrentWeapon(GameObject weapon)
