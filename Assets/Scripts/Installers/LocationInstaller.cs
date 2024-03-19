@@ -25,16 +25,15 @@ namespace Assets.Scripts.Installers
         {
             Container.Bind<PlayerFactory>().AsSingle();
             Container.Bind<EnemyFactory>().AsSingle();
+            Container.Bind<BulletFactory>().AsSingle();
         }
 
         public void Initialize()
         {
             var playerFactory = Container.Resolve<PlayerFactory>();
-            playerFactory.Load();
             playerFactory.Create(spawnPointPlayer.position);
 
             var enemyFactory = Container.Resolve<EnemyFactory>();
-            enemyFactory.Load();
 
             foreach (EnemyMarker enemyMarker in enemyMarkers)
                 enemyFactory.Create(enemyMarker.enemyType, enemyMarker.transform.position);

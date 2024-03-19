@@ -11,9 +11,10 @@ namespace Assets.Scripts.Factories
         public PlayerFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;
+            LoadResources();
         }
 
-        public void Load()
+        public void LoadResources()
         {
             _playerPrefab = Resources.Load("Prefabs/Player");
         }
@@ -21,6 +22,11 @@ namespace Assets.Scripts.Factories
         public void Create(Vector3 position)
         {
             _diContainer.InstantiatePrefab(_playerPrefab, position, Quaternion.identity, null);
+        }
+
+        public void Create()
+        {
+            _diContainer.InstantiatePrefab(_playerPrefab);
         }
     }
 }
