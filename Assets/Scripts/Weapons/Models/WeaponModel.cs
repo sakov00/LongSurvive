@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapons.Models
 {
     public abstract class WeaponModel : MonoBehaviour, IPickupable
     {
-        [field: SerializeField] public bool CanAttack { get; set; } = true;
+        [field: SerializeField, Range(0, 10)] public float TimeBetweenAttack { get; private set; }
 
         public void Pickup()
         {

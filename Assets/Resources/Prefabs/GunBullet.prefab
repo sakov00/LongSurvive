@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8912587661898393620}
   - component: {fileID: -1836460168402025972}
   - component: {fileID: 6482189009043208054}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,7 +107,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   <ShootDirection>k__BackingField: {x: 0, y: 0, z: 0}
   <DestroyBulletMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2039
 --- !u!114 &-1836460168402025972
 MonoBehaviour:
   m_ObjectHideFlags: 0

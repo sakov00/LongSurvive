@@ -16,10 +16,5 @@ namespace Assets.Scripts.Weapons.Controllers
         }
 
         public abstract void Attack(Vector3 aimPoint);
-
-        private void OnEnable()
-        {
-            weaponModel.CanAttack = true;
-        }
     }
 }

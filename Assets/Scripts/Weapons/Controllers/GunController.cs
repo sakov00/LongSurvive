@@ -1,7 +1,7 @@
 using Assets.Scripts.Bullets.Models;
 using Assets.Scripts.Components;
 using Assets.Scripts.Factories;
-using System.Collections;
+using Assets.Scripts.Weapons.Models;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +9,7 @@ namespace Assets.Scripts.Weapons.Controllers
 {
     public class GunController : DistanceWeaponController
     {
+        protected GunModel GunModel => (GunModel)weaponModel;
         [Inject]
         public void Contract(BulletFactory bulletFactory)
         {
@@ -18,21 +19,9 @@ namespace Assets.Scripts.Weapons.Controllers
 
         public override void Attack(Vector3 aimPoint)
         {
-            if (DistanceWeaponModel.CanAttack)
-            {
-                StartCoroutine(ShootCoroutine(aimPoint));
-            }
-        }
-
-        private IEnumerator ShootCoroutine(Vector3 aimPoint)
-        {
             var bullet = objectPoolBullets.GetObjectFromPool();
-            bullet.transform.position = DistanceWeaponModel.ShootPoint.position;
+            bullet.transform.position = GunModel.ShootPoint.position;
             bullet.GetComponent<BulletModel>().ShootDirection = aimPoint;
-
-            DistanceWeaponModel.CanAttack = false;
-            yield return new WaitForSeconds(DistanceWeaponModel.ShootInSecond);
-            DistanceWeaponModel.CanAttack = true;
         }
     }
 }

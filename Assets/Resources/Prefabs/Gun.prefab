@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 937218862452650280}
   - component: {fileID: 8333318182936804542}
   - component: {fileID: 5628712266614016865}
-  - component: {fileID: 2753124976857791840}
   - component: {fileID: 5546280846941286774}
   - component: {fileID: 8377820233854347976}
   m_Layer: 6
@@ -124,20 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e995d383a843441b1145edb6d0285b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2753124976857791840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629812662935443832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a953f28e1f97242b336a965062913e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectPrefab: {fileID: 2031564227901461625, guid: 159111a1e67303a49aaf5f6160c2dcc2, type: 3}
-  poolSize: 10
 --- !u!114 &5546280846941286774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339712f8e99714b46a0fe0e4ad63174b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CanAttack>k__BackingField: 1
+  <TimeBetweenAttack>k__BackingField: 0.2
   <ShootPoint>k__BackingField: {fileID: 1077447233074091568}
-  <ShootInSecond>k__BackingField: 0.2
 --- !u!1 &8703722074958687282
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 1010393861903092983}
   - component: {fileID: 36130105021404714}
   - component: {fileID: 4091473892154931592}
-  - component: {fileID: 5750750767361807439}
   - component: {fileID: 3317153863123544109}
   m_Layer: 6
   m_Name: Shotgun
@@ -155,9 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43d543374c9c0e4da5b27ec7622b743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CanAttack>k__BackingField: 1
+  <TimeBetweenAttack>k__BackingField: 1
   <ShootPoint>k__BackingField: {fileID: 5335226253426645806}
-  <ShootInSecond>k__BackingField: 1
+  <CountBullets>k__BackingField: 12
+  <RadiusShooting>k__BackingField: 1
 --- !u!114 &4091473892154931592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,20 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffc2fe3d73666548a1f0ee2f4b25067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5750750767361807439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9092789730538322665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a953f28e1f97242b336a965062913e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectPrefab: {fileID: 2031564227901461625, guid: 159111a1e67303a49aaf5f6160c2dcc2, type: 3}
-  poolSize: 10
 --- !u!114 &3317153863123544109
 MonoBehaviour:
   m_ObjectHideFlags: 0

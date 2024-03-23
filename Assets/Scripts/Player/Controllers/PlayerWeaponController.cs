@@ -11,10 +11,13 @@ namespace Assets.Scripts.Player.Controllers
     {
         private PlayerModel playerModel;
         private PlayerInputController playerInputController;
+        private WeaponModel weaponModel;
         private WeaponController weaponController;
 
         [SerializeField] private Transform transformWeapon;
         [SerializeField] private Camera _camera;
+
+        private float timer = 0;
 
         private void Awake()
         {
@@ -27,9 +30,18 @@ namespace Assets.Scripts.Player.Controllers
             playerModel.CurrentWeapon.Subscribe(SetNextCurrentWeapon);
         }
 
+        private void Update()
+        {
+            timer += Time.deltaTime;
+        }
+
         public void Attack()
         {
-            weaponController?.Attack(GetShootDirection());
+            if (timer >= weaponModel.TimeBetweenAttack)
+            {
+                weaponController?.Attack(GetShootDirection());
+                timer = 0f;
+            }
         }
 
         private Vector3 GetShootDirection()
@@ -73,6 +85,7 @@ namespace Assets.Scripts.Player.Controllers
 
             playerModel.Weapons.ForEach(x => x.SetActive(false));
             weapon.SetActive(true);
+            weaponModel = playerModel.CurrentWeapon.Value.GetComponent<WeaponModel>();
             weaponController = playerModel.CurrentWeapon.Value.GetComponent<WeaponController>();
             playerModel.CurrentWeapon.Value.transform.position = transformWeapon.position;
         }

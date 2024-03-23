@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.Components
 {
-    //good
     public class ObjectPool<T>
     {
         private Stack<T> objectPool = new Stack<T>();
