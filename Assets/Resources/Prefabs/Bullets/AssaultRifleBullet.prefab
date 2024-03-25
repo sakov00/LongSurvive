@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1836460168402025972}
   - component: {fileID: 6482189009043208054}
   m_Layer: 11
-  m_Name: GunBullet
+  m_Name: AssaultRifleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e609155793d4aee49971c4883c87b513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ValueDamage>k__BackingField: -5
-  <BulletSpeed>k__BackingField: 30
+  <ValueDamage>k__BackingField: -7
+  <BulletSpeed>k__BackingField: 60
   <Lifetime>k__BackingField: 5
   <ShootDirection>k__BackingField: {x: 0, y: 0, z: 0}
   <DestroyBulletMask>k__BackingField:

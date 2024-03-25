@@ -15,6 +15,7 @@ namespace Assets.Scripts.Player.Controllers
             playerHUDView = GetComponent<PlayerHUDView>();
             playerModel = GetComponent<PlayerModel>();
             playerModel.healthPoints.Subscribe(x => playerHUDView.UpdateHealth(x));
+
         }
     }
 }

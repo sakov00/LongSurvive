@@ -13,7 +13,7 @@ namespace Assets.Scripts.CommonForUnits.Controllers
             unitModel = GetComponent<UnitModel>();
         }
 
-        public abstract void HealthModify(float value);
+        public abstract void HealthModify(int value);
 
         private void OnCollisionEnter(Collision collision)
         {

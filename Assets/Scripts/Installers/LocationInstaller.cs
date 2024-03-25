@@ -1,20 +1,21 @@
+using Assets.Scripts.Bootstrap;
 using Assets.Scripts.Factories;
-using Assets.Scripts.Markers;
-using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Installers
 {
-    public class LocationInstaller : MonoInstaller<LocationInstaller>, IInitializable
+    public class LocationInstaller : MonoInstaller
     {
-        [SerializeField] private EnemyMarker[] enemyMarkers;
-        [SerializeField] private Transform spawnPointPlayer;
-
         public override void InstallBindings()
         {
+            BindBootstrap();
             BindPlayer();
             BindFactories();
-            Container.BindInterfacesTo<LocationInstaller>().FromInstance(this).AsSingle();
+        }
+
+        private void BindBootstrap()
+        {
+            Container.Bind<BootstrapScene>().AsSingle();
         }
 
         private void BindPlayer()
@@ -28,15 +29,6 @@ namespace Assets.Scripts.Installers
             Container.Bind<BulletFactory>().AsSingle();
         }
 
-        public void Initialize()
-        {
-            var playerFactory = Container.Resolve<PlayerFactory>();
-            playerFactory.Create(spawnPointPlayer.position);
 
-            var enemyFactory = Container.Resolve<EnemyFactory>();
-
-            foreach (EnemyMarker enemyMarker in enemyMarkers)
-                enemyFactory.Create(enemyMarker.enemyType, enemyMarker.transform.position);
-        }
     }
 }

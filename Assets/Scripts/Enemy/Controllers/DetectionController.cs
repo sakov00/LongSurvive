@@ -14,12 +14,12 @@ namespace Assets.Scripts.Enemy.Controllers
         public bool IsVisiblePlayer;
         public Transform NearPlayerTransform;
 
-        private void FixedUpdate()
+        private void Start()
         {
-            IsVisiblePlayer = CanSeePlayer();
+            InvokeRepeating(nameof(CanSeePlayer), 0f, 0.5f);
         }
 
-        private bool CanSeePlayer()
+        private void CanSeePlayer()
         {
             int colliderCount = Physics.OverlapSphereNonAlloc(transform.position, detectionRange, colliders, layerMask);
             for (int i = 0; i < colliderCount; i++)
@@ -27,10 +27,13 @@ namespace Assets.Scripts.Enemy.Controllers
                 if (colliders[i].GetComponent<PlayerModel>() != null)
                 {
                     NearPlayerTransform = colliders[i].transform;
-                    return true;
+                    IsVisiblePlayer = true;
+                }
+                else
+                {
+                    IsVisiblePlayer = false;
                 }
             }
-            return false;
         }
 
         private void OnDrawGizmosSelected()

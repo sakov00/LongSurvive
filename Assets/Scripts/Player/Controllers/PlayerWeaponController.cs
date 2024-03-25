@@ -37,11 +37,19 @@ namespace Assets.Scripts.Player.Controllers
 
         public void Attack()
         {
-            if (timer >= weaponModel.TimeBetweenAttack)
+            if (timer < weaponModel.TimeBetweenAttack)
+                return;
+
+            if (weaponModel is DistanceWeaponModel distanceWeaponModel)
             {
-                weaponController?.Attack(GetShootDirection());
-                timer = 0f;
+                if (playerModel.GetCurrentAmmo(distanceWeaponModel.BulletType) <= 0)
+                    return;
+                else
+                    playerModel.ChangeAmmo(distanceWeaponModel.BulletType, -1);
             }
+
+            weaponController?.Attack(GetShootDirection());
+            timer = 0f;
         }
 
         private Vector3 GetShootDirection()

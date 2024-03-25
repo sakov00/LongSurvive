@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player.Controllers
             base.Awake();
         }
 
-        public override void HealthModify(float value)
+        public override void HealthModify(int value)
         {
             unitModel.ModifyHealth(value);
         }

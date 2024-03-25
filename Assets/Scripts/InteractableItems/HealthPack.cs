@@ -7,10 +7,11 @@ namespace Assets.Scripts.InteractableItems
 {
     public class HealthPack : MonoBehaviour, IPickupable
     {
-        [SerializeField] public float HealthPoints = 10f;
+        [field: SerializeField] public int HealthPoints { get; private set; }
 
         public void Pickup()
         {
+            Destroy(gameObject);
         }
     }
 }

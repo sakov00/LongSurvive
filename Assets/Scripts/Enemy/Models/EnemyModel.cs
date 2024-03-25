@@ -5,6 +5,6 @@ namespace Assets.Scripts.Enemy.Models
 {
     public class EnemyModel : UnitModel
     {
-        [field: SerializeField, Range(-10, 0)] public float ContactDamageValue { get; private set; }
+        [field: SerializeField, Range(-10, 0)] public int ContactDamageValue { get; private set; }
     }
 }

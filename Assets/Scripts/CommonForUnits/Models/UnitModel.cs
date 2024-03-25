@@ -8,9 +8,9 @@ namespace Assets.Scripts.CommonForUnits.Models
     {
         [Range(0, 100)] public float jumpHeight;
         [Range(0, 10)] public float movementSpeed;
-        public FloatReactiveProperty healthPoints;
+        public IntReactiveProperty healthPoints;
 
-        public void ModifyHealth(float value)
+        public void ModifyHealth(int value)
         {
             healthPoints.Value += value;
             if (healthPoints.Value <= 0)

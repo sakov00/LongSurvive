@@ -20,8 +20,8 @@ namespace Assets.Scripts.Player.Controllers
             IPickupable pickupableObject = interactedObject.GetComponent<IPickupable>();
             if (pickupableObject != null)
             {
-                pickupableObject.Pickup();
                 RealizeObject(pickupableObject);
+                pickupableObject.Pickup();
             }
         }
 
@@ -35,19 +35,25 @@ namespace Assets.Scripts.Player.Controllers
                 case WeaponModel weaponModel:
                     PickupWeapon(weaponModel);
                     break;
-
+                case AmmoForWeapon ammoForWeapon:
+                    PickupAmmo(ammoForWeapon);
+                    break;
             }
         }
 
         private void PickupHealthPack(HealthPack healthPack)
         {
             playerModel.ModifyHealth(healthPack.HealthPoints);
-            Object.Destroy(healthPack.gameObject);
         }
 
         private void PickupWeapon(WeaponModel weaponModel)
         {
             playerModel.CurrentWeapon.Value = weaponModel.gameObject;
+        }
+
+        private void PickupAmmo(AmmoForWeapon ammoForWeapon)
+        {
+            playerModel.ChangeAmmo(ammoForWeapon.BulletType, ammoForWeapon.CountAmmo);
         }
     }
 }
