@@ -286,6 +286,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6366342195093111890, guid: faf6617e4767c044880d2e53efec40f5, type: 3}
+      propertyPath: value.groundMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366342195093111890, guid: faf6617e4767c044880d2e53efec40f5, type: 3}
       propertyPath: value.characterController
       value: 
       objectReference: {fileID: 1082257638}
