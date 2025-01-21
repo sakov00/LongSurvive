@@ -1,4 +1,4 @@
-using Assets.Scripts.Bootstrap;
+using _Project.Scripts.Bootstrap;
 using Assets.Scripts.Factories;
 using Zenject;
 
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Installers
 
         private void BindBootstrap()
         {
-            Container.Bind<BootstrapScene>().AsSingle();
+            Container.Bind<EcsGameStartUp>().AsSingle();
         }
 
         private void BindPlayer()

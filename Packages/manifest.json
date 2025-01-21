@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.leopotam.ecslite": "https://github.com/voody2506/ecslite.git",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.2d": "2.0.0",
@@ -11,6 +12,7 @@
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.1",
+    "com.voody.unileo.lite": "https://github.com/voody2506/UniLeo-Lite.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
