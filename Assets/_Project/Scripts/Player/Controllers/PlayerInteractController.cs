@@ -6,7 +6,7 @@ namespace Assets.Scripts.Player.Controllers
 {
     public class PlayerInteractController : MonoBehaviour
     {
-        private PlayerModel playerModel;
+        /*private PlayerModel playerModel;
         private PlayerPickupAbleController playerPickupAbleController;
         private PlayerClickableController playerClickableController;
         private PlayerInputController playerInputController;
@@ -34,6 +34,6 @@ namespace Assets.Scripts.Player.Controllers
                 playerPickupAbleController.TryPickup(interactedObject);
                 playerClickableController.TryPressButton(interactedObject);
             }
-        }
+        }*/
     }
 }

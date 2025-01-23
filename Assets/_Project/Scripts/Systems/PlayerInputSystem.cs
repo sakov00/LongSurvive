@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Components;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -24,13 +25,18 @@ namespace _Project.Scripts.Systems
 
             _inputActions.PC.Movement.performed += Movement;
             _inputActions.PC.Movement.canceled += Movement;
-
+            
+            _inputActions.PC.Scroll.performed += SwitchGun;
+            _inputActions.PC.Scroll.canceled += SwitchGun;
         }
 
         public void Destroy(EcsSystems systems)
         {
             _inputActions.PC.Movement.performed -= Movement;
             _inputActions.PC.Movement.canceled -= Movement;
+            
+            _inputActions.PC.Scroll.performed -= SwitchGun;
+            _inputActions.PC.Scroll.canceled -= SwitchGun;
 
             _inputActions.Disable();
         }
@@ -41,6 +47,15 @@ namespace _Project.Scripts.Systems
             {
                 ref var inputComponent = ref inputPool.Get(entityIndex);
                 inputComponent.movementInput = obj.ReadValue<Vector3>();
+            }
+        }
+
+        private void SwitchGun(InputAction.CallbackContext obj)
+        {
+            foreach (var entityIndex in filter)
+            {
+                ref var inputComponent = ref inputPool.Get(entityIndex);
+                inputComponent.scrollInput = obj.ReadValue<float>();
             }
         }
     }

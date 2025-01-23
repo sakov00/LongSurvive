@@ -17,6 +17,8 @@ namespace _Project.Scripts.Bootstrap
         public void Awake()
         {
             world = new EcsWorld();
+
+            Application.targetFrameRate = -1;
             
             DeclareInitSystems();
             DeclareFixedUpdateSystems();
@@ -42,6 +44,8 @@ namespace _Project.Scripts.Bootstrap
             updateSystems = new EcsSystems(world);
             updateSystems.Add(new GravitySystem());
             updateSystems.Add(new MovementSystem());
+            updateSystems.Add(new CameraSystem());
+            updateSystems.Add(new SwitchWeaponSystem());
             updateSystems.ConvertScene();
             updateSystems.Init();
         }

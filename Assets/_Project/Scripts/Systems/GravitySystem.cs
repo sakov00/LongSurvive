@@ -6,8 +6,6 @@ namespace _Project.Scripts.Systems
 {
     public class GravitySystem : IEcsInitSystem, IEcsRunSystem
     {
-        private PlayerInput _inputActions;
-        
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<MovementComponent> movementPool = null;

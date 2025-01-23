@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player.Controllers
 {
     public class PlayerWeaponController : MonoBehaviour
     {
-        private PlayerModel playerModel;
+        /*private PlayerModel playerModel;
         private PlayerInputController playerInputController;
         private WeaponModel weaponModel;
         private WeaponController weaponController;
@@ -96,6 +96,6 @@ namespace Assets.Scripts.Player.Controllers
             weaponModel = playerModel.CurrentWeapon.Value.GetComponent<WeaponModel>();
             weaponController = playerModel.CurrentWeapon.Value.GetComponent<WeaponController>();
             playerModel.CurrentWeapon.Value.transform.position = transformWeapon.position;
-        }
+        }*/
     }
 }

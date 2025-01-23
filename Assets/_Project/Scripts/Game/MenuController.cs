@@ -6,14 +6,14 @@ namespace Assets.Scripts.Game
 {
     public class MenuController : MonoBehaviour
     {
-        [Inject] private PlayerInputController playerInputController;
+
 
         [SerializeField] private GameObject pauseMenu;
 
-        private void Awake()
+        /*private void Awake()
         {
             playerInputController.OnPauseMenuEvent += PauseMenu;
-        }
+        }*/
 
         public void PauseMenu()
         {
